@@ -2,6 +2,7 @@
 *.class
 
 /.idea
+/node_modules
 
 # Log file
 *.log
