@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="bar in bars" :key="bar.label" class="row mb-1">
-            <div class="col-sm-2 ">{{ bar.variant }}:</div>
+            <div class="col-sm-2 ">{{ bar.name }}</div>
             <div class="col-sm-10 pt-1">
                 <b-progress :value="bar.value" :variant="bar.variant" :key="bar.variant"></b-progress>
             </div>
@@ -14,24 +14,33 @@
         data() {
             return {
                 bars: [
-                    { variant: 'success', value: 75 },
-                    { variant: 'info', value: 75 },
-                    { variant: 'warning', value: 75 },
-                    { variant: 'danger', value: 75 },
-                    { variant: 'primary', value: 75 },
-                    { variant: 'secondary', value: 75 },
-                    { variant: 'dark', value: 75 }
+                    { variant: "danger", value: 40, name: 'Unix/Python' },
+                    { variant: "danger", value: 50, name: 'Операционные системы' },
+                    { variant: "danger", value: 32, name: 'C++' },
+                    { variant: "danger", value: 80, name: 'Комбинаторика' },
+                    { variant: "danger", value: 50, name: 'Базы данных' },
+                    { variant: "danger", value: 70, name: 'ФП' },
+                    { variant: "danger", value: 90, name: 'Основы програмной инженерии' }
                 ],
                 timer: null
             }
         },
         mounted() {
             this.timer = setInterval(() => {
-                this.bars.forEach(bar => (bar.value = 25 + Math.random() * 75))
-            }, 2000)
+                this.bars.forEach(bar => (bar.value -= 2));
+                if (this.value < 70) {
+                    this.variant = "warning";
+                }
+                if (this.value < 50) {
+                    this.variant = "danger";
+                }
+                else {
+                    this.variant = "success";
+                }
+            }, 1500)
         },
         beforeDestroy() {
-            clearInterval(this.timer)
+            clearInterval(this.timer);
             this.timer = null
         }
     }

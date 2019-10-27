@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app" style="margin-top: 0px">
     <Navbar />
-    <HelloWorld msg="Deadliner"/>
+    <HelloWorld msg="Текущие дэдлайны"/>
     <ProgressBar />
   </div>
 </template>

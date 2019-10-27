@@ -1,7 +1,6 @@
 <template>
-  <div class="hello">
+  <div class="hello mt-5">
     <h1>{{ msg }}</h1>
-    <p class="">Task manager</p>
   </div>
 </template>
 
