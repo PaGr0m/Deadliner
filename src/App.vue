@@ -1,10 +1,11 @@
 <template>
-  <div id="app" style="margin-top: 0px">
+  <div id="app">
     <Navbar />
     <HelloWorld msg="Текущие дэдлайны"/>
     <ProgressBar />
 
       <TimeLine></TimeLine>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -32,6 +33,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

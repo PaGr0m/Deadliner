@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div v-for="bar in bars" :key="bar.label" class="row mb-1">
+    <div class="mt-5">
+        <div v-for="bar in bars" :key="bar.label" class="row mb-1 m-auto">
             <div class="col-sm-2 ">{{ bar.name }}</div>
             <div class="col-sm-10 pt-1">
                 <b-progress :value="bar.value" :variant="bar.variant" :key="bar.variant"></b-progress>
@@ -15,12 +15,12 @@
             return {
                 bars: [
                     { variant: "danger", value: 40, name: 'Unix/Python' },
-                    { variant: "danger", value: 50, name: 'Операционные системы' },
+                    { variant: "danger", value: 50, name: 'ОC' },
                     { variant: "danger", value: 32, name: 'C++' },
                     { variant: "danger", value: 80, name: 'Комбинаторика' },
                     { variant: "danger", value: 50, name: 'Базы данных' },
                     { variant: "danger", value: 70, name: 'ФП' },
-                    { variant: "danger", value: 90, name: 'Основы програмной инженерии' }
+                    { variant: "danger", value: 90, name: 'Основы ПИ' }
                 ],
                 timer: null
             }
