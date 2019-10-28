@@ -1,22 +1,17 @@
 <template>
-  <div id="app" style="margin-top: 0px">
+  <div id="app">
     <Navbar />
-    <HelloWorld msg="Текущие дэдлайны"/>
-    <ProgressBar />
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar"
-import HelloWorld from './components/HelloWorld.vue'
-import ProgressBar from "./components/ProgressBar"
 
 export default {
   name: 'app',
   components: {
-    HelloWorld,
-    ProgressBar,
-    Navbar
+    Navbar,
   }
 }
 </script>
@@ -28,6 +23,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

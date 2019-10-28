@@ -13,7 +13,6 @@
                 <!-- Right aligned nav items -->
                 <b-navbar-nav class="ml-auto">
                     <b-nav-item href="#">Текущие дэдлайны</b-nav-item>
-                    <b-nav-item href="#">Таблица напоминаний</b-nav-item>
                     <b-nav-item href="#">Контакты преподавателей</b-nav-item>
                 </b-navbar-nav>
             </b-collapse>
