@@ -1,8 +1,9 @@
 <template>
   <div id="app" style="margin-top: 0px">
     <Navbar />
-    <HelloWorld msg="Текущие дэдлайны"/>
+    <HelloWorld msg="Current Deadlines"/>
     <ProgressBar />
+    <Notifications />
   </div>
 </template>
 
@@ -10,13 +11,15 @@
 import Navbar from "./components/Navbar"
 import HelloWorld from './components/HelloWorld.vue'
 import ProgressBar from "./components/ProgressBar"
+import Notifications from "./components/Notifications"
 
 export default {
   name: 'app',
   components: {
     HelloWorld,
     ProgressBar,
-    Navbar
+    Navbar,
+    Notifications
   }
 }
 </script>
