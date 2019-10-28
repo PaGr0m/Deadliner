@@ -1,24 +1,17 @@
 <template>
   <div id="app">
     <Navbar />
-    <ProgressBar />
-
-      <TimeLine></TimeLine>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar"
-import ProgressBar from "./components/ProgressBar"
-import TimeLine from  "./components/TimeLine"
 
 export default {
   name: 'app',
   components: {
-    TimeLine,
-    ProgressBar,
-    Navbar,
+    Navbar
   }
 }
 </script>
