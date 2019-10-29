@@ -1,18 +1,31 @@
 <template>
 
     <div>
-        <gantt-elastic :tasks="tasks" :options="options" :dynamic-style="dynamicStyle">
-            <gantt-header slot="header" :options="headerOptions" :dynamic-style="headerStyle"></gantt-header>
-        </gantt-elastic>
+        <b-tabs content-class="mt-3">
+            <b-tab title="Подробно" active>
+                  <div class="container">
+                      <gantt-elastic :tasks="tasks" :options="options" :dynamic-style="dynamicStyle">
+                          <gantt-header slot="header" :options="headerOptions" :dynamic-style="headerStyle"></gantt-header>
+                      </gantt-elastic>
+                  </div>
+            </b-tab>
+            <b-tab title="Кратко">
+                <div class="container">
+                    <ProgressBar />
+                </div>
+            </b-tab>
+        </b-tabs>
     </div>
 
 </template>
 
 <script>
   import GanttElastic from "gantt-elastic"
-  import GantHeader from "gantt-elastic-header"
-  import axios from 'axios';
 
+  // import GantHeader from "gantt-elastic-header"
+  import GantHeader from "../components/Header"
+  import ProgressBar from "./ProgressBar";
+  import axios from 'axios';
 
   function getDate(hours) {
     const currentDate = new Date();
@@ -35,7 +48,6 @@
       'Display task list': 'Предметы'
     }
   };
-
 
   let tasks = [
     {
@@ -90,7 +102,6 @@
       // collapsed: true,
     }
   ];
-
 
   let options = {
     maxRows: 1000,
@@ -172,12 +183,24 @@
   export default {
       components: {
         'gantt-elastic': GanttElastic,
-        'gantt-header': GantHeader
+        'gantt-header': GantHeader,
+          'ProgressBar': ProgressBar
       },
+      // methods: {
+      //     showM() {
+      //         if (showModal) {
+      //             showModal = false;
+      //         } else {
+      //             showModal = true;
+      //         }
+      //     }
+      // },
+
     data() {
       return {
         tasks,
         options,
+          showModal,
         dynamicStyle: {
           'task-list-header-label': {
             'font-weight': 'bold',
@@ -229,8 +252,6 @@
     }
 
   }
-
-
 
 
 </script>

@@ -23,13 +23,16 @@
                     { cur_sec: new Date().getTime()},
                 ],
                 bars: [
-                    { variant: "danger", value: 0, add_date: new Date('October 28, 2019 03:24:00'), dead_date :new Date('October 29, 2019 03:24:00'), name: 'Unix/Python' },
-                    { variant: "danger", value: 0, add_date: new Date('October 28, 2019 03:24:00'), dead_date :new Date('October 30, 2019 23:24:00'), name: 'Операционные системы' },
+                    { variant: "danger", value: 0, add_date: new Date('October 28, 2019 03:24:00'), dead_date :new Date('October 29, 2019 03:24:00'), name: 'Python' },
+                    { variant: "danger", value: 0, add_date: new Date('October 28, 2019 03:24:00'), dead_date :new
+                        Date('October 30, 2019 23:24:00'), name: 'ОС' },
                     { variant: "danger", value: 0, add_date: new Date('October 28, 2019 03:24:00'), dead_date :new Date('October 30, 2019 03:24:00'), name: 'C++' },
-                    { variant: "danger", value: 0, add_date: new Date('October 27, 2019 23:24:00'), dead_date :new Date('October 29, 2019 03:24:00'), name: 'Комбинаторика' },
+                    { variant: "danger", value: 0, add_date: new Date('October 27, 2019 23:24:00'), dead_date :new
+                        Date('October 29, 2019 03:24:00'), name: 'Комб' },
                     { variant: "danger", value: 0, add_date: new Date('October 21, 2019 03:24:00'), dead_date :new Date('October 30, 2019 03:24:00'), name: 'Базы данных' },
                     { variant: "danger", value: 0, add_date: new Date('October 23, 2019 03:24:00'), dead_date :new Date('October 29, 2019 03:24:00'), name: 'ФП' },
-                    { variant: "danger", value: 0, add_date: new Date('October 21, 2019 03:24:00'), dead_date :new Date('October 29, 2019 03:24:00'), name: 'Основы програмной инженерии' }
+                    { variant: "danger", value: 0, add_date: new Date('October 21, 2019 03:24:00'), dead_date :new
+                        Date('October 29, 2019 03:24:00'), name: 'Основы ПИ' }
                 ],
                 timer: null
             }
