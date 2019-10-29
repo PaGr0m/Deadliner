@@ -37,7 +37,7 @@
   let tasks = [
     {
       id: 1,
-      label: 'Алгоритмы',
+      label: 'Алго: дз4',
       user: '',
       start: getDate(24),
       duration: 15 * 24 * 60 * 60 * 1000,
@@ -73,7 +73,7 @@
     },
     {
       id: 4,
-      label: 'Базы данных',
+      label: 'БД: дз 4. SQL запросы',
       user: '',
       start: getDate((24 * 2) - 5),
       duration: 2 * 24 * 60 * 60 * 1000,
@@ -149,6 +149,16 @@
 
   };
 
+  tasks.sort(function (a, b) {
+    if (a.start + a.duration > b.start + b.duration) {
+      return 1;
+    }
+    if (b.start + b.duration > a.start + a.duration) {
+      return -1;
+    }
+    return 0;
+  });
+
 
   function prepareStyle(userStyle) {
     let fontSize = '20px';
@@ -180,7 +190,8 @@
         dynamicStyle: {
           'task-list-header-label': {
             'font-weight': 'bold',
-            'font-size': '17px'
+            'font-size': '17px',
+            '.grid-line-time': '{ display: none }'
           }
         },
         headerOptions,
