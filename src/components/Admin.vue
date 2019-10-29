@@ -4,8 +4,8 @@
         <b-form-group id="input-group-3" label="Предмет" label-for="input-3">
             <b-form-select
                     id="input-3"
-                    v-model="form.subjectName"
-                    :options="subjectName"
+                    v-model="form.subject"
+                    :options="subject"
                     required
             ></b-form-select>
         </b-form-group>
@@ -61,17 +61,19 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         data() {
             return {
                 form: {
                     name: null,
-                    subjectName: null,
+                    subject: null,
                     description: null,
                     dateTimeStart: new Date(),
                     dateTimeFinish: null
                 },
-                subjectName: [{ text: 'Предмет:', value: null }, 'C++', 'Unix/Python', 'Алгоритмы', 'Базы данных',
+                subject: [{ text: 'Предмет:', value: null }, 'C++', 'Unix/Python', 'Алгоритмы', 'Базы данных',
                     'Комбинаторика', 'Операционные системы', 'Основы программной инженерии',
                     'Функциональное программирование'],
                 show: true
@@ -80,20 +82,17 @@
         methods: {
             onSubmit(evt) {
                 evt.preventDefault()
-              this.form.dateTimeFinish = this.form.dateTimeFinish + "T11:40:00.308Z"
-              // alert(JSON.stringify(this.form))
+              this.form.dateTimeFinish = this.form.dateTimeFinish + "T10:44:44.308Z"
 
-              // fetch('https://jsonplaceholder.typicode.com/todos/1')
-              //   .then(response => response.json())
-              //   .then(json => console.log(json))
+              axios.post("https://deadliner.herokuapp.com/deadlines/create", {
+                name: form.name,
+                description: form.description,
+                dateTimeStart: new Date(),
+                dateTimeFinish: this.form.dateTimeFinish,
+                subject: "C++"
+              }).then(res => console.log("deadline created", res))
+                .catch(e => console.log("err deadline create", e))
 
-              fetch('https://deadliner.herokuapp.com/deadlines/list')
-                .then(res => res.json())
-                .then(json => console.log(json))
-
-              // post()
-
-              // this.http.post("", this.form)
     },
     onReset(evt) {
         evt.preventDefault()
