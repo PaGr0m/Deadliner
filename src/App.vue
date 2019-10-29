@@ -1,8 +1,6 @@
 <template>
   <div id="app">
     <Navbar />
-    <ProgressBar />
-
       <TimeLine></TimeLine>
     <router-view></router-view>
   </div>
@@ -17,7 +15,6 @@ export default {
   name: 'app',
   components: {
     TimeLine,
-    ProgressBar,
     Navbar,
   }
 }
