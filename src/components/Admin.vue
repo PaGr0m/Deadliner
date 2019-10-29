@@ -37,7 +37,7 @@
                 <b-form-input
                         id="date"
                         type='date'
-                        v-model="form.date"
+                        v-model="form.dateTimeFinish"
                         required
                 ></b-form-input>
             </b-form-group>
@@ -64,16 +64,12 @@
     export default {
         data() {
             return {
-                // dateFormat: {
-                //     date: null,
-                //     time: null
-                // },
                 form: {
                     name: null,
                     subjectName: null,
                     description: null,
                     dateTimeStart: new Date(),
-                    // dateTimeFinish: this.dateFormat.date + this.dateFormat.time
+                    dateTimeFinish: null
                 },
                 subjectName: [{ text: 'Предмет:', value: null }, 'C++', 'Unix/Python', 'Алгоритмы', 'Базы данных',
                     'Комбинаторика', 'Операционные системы', 'Основы программной инженерии',
@@ -84,7 +80,20 @@
         methods: {
             onSubmit(evt) {
                 evt.preventDefault()
-    alert(JSON.stringify(this.form))
+              this.form.dateTimeFinish = this.form.dateTimeFinish + "T11:40:00.308Z"
+              // alert(JSON.stringify(this.form))
+
+              // fetch('https://jsonplaceholder.typicode.com/todos/1')
+              //   .then(response => response.json())
+              //   .then(json => console.log(json))
+
+              fetch('https://deadliner.herokuapp.com/deadlines/list')
+                .then(res => res.json())
+                .then(json => console.log(json))
+
+              // post()
+
+              // this.http.post("", this.form)
     },
     onReset(evt) {
         evt.preventDefault()
