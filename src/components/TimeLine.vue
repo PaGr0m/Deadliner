@@ -144,7 +144,7 @@
           html: true,
           events: {
             click({ data, column }) {
-              alert('description clicked!\n' + data.label + ' soo: ' + showModal);
+              alert('description clicked!\n' + data.label + ' soo: ');
             }
           }
         },
@@ -200,7 +200,6 @@
       return {
         tasks,
         options,
-          showModal,
         dynamicStyle: {
           'task-list-header-label': {
             'font-weight': 'bold',
