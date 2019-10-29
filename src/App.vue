@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
+      <TimeLine></TimeLine>
     <router-view></router-view>
   </div>
 </template>
@@ -11,6 +12,8 @@ import Navbar from "./components/Navbar"
 export default {
   name: 'app',
   components: {
+    TimeLine,
+    Navbar,
     Navbar
   }
 }
