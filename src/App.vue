@@ -8,14 +8,13 @@
 
 <script>
 import Navbar from "./components/Navbar"
-import ProgressBar from "./components/ProgressBar"
-import TimeLine from  "./components/TimeLine"
 
 export default {
   name: 'app',
   components: {
     TimeLine,
     Navbar,
+    Navbar
   }
 }
 </script>

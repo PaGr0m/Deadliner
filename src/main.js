@@ -7,14 +7,15 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import ProgressBar from "./components/ProgressBar"
 import Notifications from "./components/Notifications"
+import TimeLine from "./components/TimeLine";
 
-Vue.config.productionTip = false
-Vue.use(BootstrapVue)
-Vue.use(VueRouter)
+Vue.config.productionTip = false;
+Vue.use(BootstrapVue);
+Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: [
-    { path: '/', component: ProgressBar },
+    { path: '/', component: TimeLine },
     { path: '/notifications', component: Notifications}
   ],
   mode: 'history'
