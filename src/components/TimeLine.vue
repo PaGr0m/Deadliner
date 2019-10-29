@@ -1,15 +1,32 @@
 <template>
 
-    <gantt-elastic :tasks="tasks" :options="options" :dynamic-style="dynamicStyle">
-        <gantt-header slot="header" :options="headerOptions" :dynamic-style="headerStyle"></gantt-header>
-    </gantt-elastic>
+    <div>
+        <b-tabs content-class="mt-3">
+            <b-tab title="Подробно" active>
+                  <div class="container">
+                      <gantt-elastic :tasks="tasks" :options="options" :dynamic-style="dynamicStyle">
+                          <gantt-header slot="header" :options="headerOptions" :dynamic-style="headerStyle"></gantt-header>
+                      </gantt-elastic>
+                  </div>
+            </b-tab>
+            <b-tab title="Кратко">
+                <div class="container">
+                    <ProgressBar />
+                </div>
+            </b-tab>
+        </b-tabs>
+    </div>
+
+
+
 
 </template>
 
 <script>
   import GanttElastic from "gantt-elastic"
-  import GantHeader from "gantt-elastic-header"
-
+  // import GantHeader from "gantt-elastic-header"
+  import GantHeader from "../components/Header"
+  import ProgressBar from "./ProgressBar";
 
   function getDate(hours) {
     const currentDate = new Date();
@@ -32,7 +49,6 @@
       'Display task list': 'Предметы'
     }
   };
-
 
   let tasks = [
     {
@@ -83,6 +99,8 @@
     }
   ];
 
+  let showModal = false;
+
   let options = {
     maxRows: 1000,
     maxHeight: 10000,
@@ -123,9 +141,10 @@
           expander: true,
           html: true,
           events: {
-            click({ data, column }) {
-              alert('description clicked!\n' + data.label + ' soo ' + column);
-            }
+            click({ data, column, event }) {
+                console.log(showModal);
+              // alert('description clicked!\n' + data.label + ' soo ' + column);
+            },
           }
         },
         {
@@ -181,12 +200,24 @@
   export default {
       components: {
         'gantt-elastic': GanttElastic,
-        'gantt-header': GantHeader
+        'gantt-header': GantHeader,
+          'ProgressBar': ProgressBar
       },
+      // methods: {
+      //     showM() {
+      //         if (showModal) {
+      //             showModal = false;
+      //         } else {
+      //             showModal = true;
+      //         }
+      //     }
+      // },
+
     data() {
       return {
         tasks,
         options,
+          showModal,
         dynamicStyle: {
           'task-list-header-label': {
             'font-weight': 'bold',
@@ -202,8 +233,6 @@
     },
 
   }
-
-
 
 
 </script>

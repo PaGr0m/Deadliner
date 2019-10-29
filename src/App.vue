@@ -1,20 +1,17 @@
 <template>
   <div id="app">
     <Navbar />
-      <TimeLine></TimeLine>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
 import Navbar from "./components/Navbar"
-import TimeLine from "./components/TimeLine"
 
 export default {
   name: 'app',
   components: {
-    TimeLine,
-    Navbar,
+    Navbar
   }
 }
 </script>
