@@ -8,6 +8,7 @@
 
 <script>
 import Navbar from "./components/Navbar"
+import TimeLine from "./components/TimeLine"
 
 export default {
   name: 'app',
