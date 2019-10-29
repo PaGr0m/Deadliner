@@ -160,24 +160,6 @@
   });
 
 
-  function prepareStyle(userStyle) {
-    let fontSize = '20px';
-    let fontFamily = window
-      .getComputedStyle(document.body)
-      .getPropertyValue('font-family')
-      .toString();
-    if (typeof userStyle !== 'undefined') {
-      if (typeof userStyle.fontSize !== 'undefined') {
-        fontSize = userStyle.fontSize;
-      }
-      if (typeof userStyle.fontFamily !== 'undefined') {
-        fontFamily = userStyle.fontFamily;
-      }
-    }
-    return getStyle(fontSize, fontFamily);
-  }
-
-
   export default {
       components: {
         'gantt-elastic': GanttElastic,
