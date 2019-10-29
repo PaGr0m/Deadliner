@@ -5,7 +5,7 @@ import BootstrapVue from 'bootstrap-vue'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import ProgressBar from "./components/ProgressBar"
+import Admin from "./components/Admin"
 import Notifications from "./components/Notifications"
 import TimeLine from "./components/TimeLine";
 
@@ -16,7 +16,8 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
     { path: '/', component: TimeLine },
-    { path: '/notifications', component: Notifications}
+    { path: '/notifications', component: Notifications},
+    { path: '/admin', component: Admin}
   ],
   mode: 'history'
 });
