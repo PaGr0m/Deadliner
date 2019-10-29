@@ -186,15 +186,6 @@
         'gantt-header': GantHeader,
           'ProgressBar': ProgressBar
       },
-      // methods: {
-      //     showM() {
-      //         if (showModal) {
-      //             showModal = false;
-      //         } else {
-      //             showModal = true;
-      //         }
-      //     }
-      // },
 
     data() {
       return {
@@ -221,7 +212,8 @@
               label: t.name,
               user: '',
               description: t.description,
-              start: new Date(t.dateTimeStart).getTime(),
+              start: getDate(0),
+                // new Date(t.dateTimeStart).getTime(),
               duration: new Date(t.dateTimeFinish).getTime() - new Date(t.dateTimeStart).getTime(),
               progress: 100 * ((new Date(t.dateTimeFinish).getTime() - new Date(t.dateTimeStart).getTime()) / (new Date().getTime() - new Date(t.dateTimeStart).getTime())),
               type: 'project'
