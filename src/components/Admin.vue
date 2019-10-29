@@ -38,7 +38,7 @@
                 <b-form-input
                         id="date"
                         type='date'
-                        v-model="formDl.date"
+                        v-model="formDl.dateTimeFinish"
                         required
                 ></b-form-input>
             </b-form-group>
@@ -86,12 +86,14 @@
 </template>
 
 <script>
+    import axios from 'axios';
+
     export default {
         data() {
             return {
                 formDl: {
                     name: null,
-                    subjectName: null,
+                    subject: null,
                     description: null,
                     dateTimeStart: new Date(),
                     dateTimeFinish: null
@@ -100,7 +102,7 @@
                     title: null,
                     description: null
                 },
-                subjectName: [{ text: 'Предмет:', value: null }, 'C++', 'Unix/Python', 'Алгоритмы', 'Базы данных',
+                subject: [{ text: 'Предмет:', value: null }, 'C++', 'Unix/Python', 'Алгоритмы', 'Базы данных',
                     'Комбинаторика', 'Операционные системы', 'Основы программной инженерии',
                     'Функциональное программирование'],
                 show: true
@@ -109,7 +111,17 @@
         methods: {
             onSubmit(evt) {
                 evt.preventDefault()
-    alert(JSON.stringify(this.form))
+              this.form.dateTimeFinish = this.form.dateTimeFinish + "T10:44:44.308Z"
+
+              axios.post("https://deadliner.herokuapp.com/deadlines/create", {
+                name: form.name,
+                description: form.description,
+                dateTimeStart: new Date(),
+                dateTimeFinish: this.form.dateTimeFinish,
+                subject: "C++"
+              }).then(res => console.log("deadline created", res))
+                .catch(e => console.log("err deadline create", e))
+
     },
     onReset(evt) {
         evt.preventDefault()

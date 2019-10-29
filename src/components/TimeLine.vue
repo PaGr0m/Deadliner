@@ -17,16 +17,15 @@
         </b-tabs>
     </div>
 
-
-
-
 </template>
 
 <script>
   import GanttElastic from "gantt-elastic"
+
   // import GantHeader from "gantt-elastic-header"
   import GantHeader from "../components/Header"
   import ProgressBar from "./ProgressBar";
+  import axios from 'axios';
 
   function getDate(hours) {
     const currentDate = new Date();
@@ -52,21 +51,19 @@
 
   let tasks = [
     {
-      id: 1,
+      id: 1001,
       label: 'Алго: дз4',
       user: '',
-      start: getDate(24),
-      duration: 15 * 24 * 60 * 60 * 1000,
+      start: getDate(0),
+      duration: 3 * 24 * 60 * 60 * 1000,
       progress: 85,
       type: 'project',
       // collapsed: true,
-    },
-    {
-      id: 2,
-      label: 'Дискретная математика',
-      user:
-        '<a href="https://www.google.com/search?q=Peter+Parker" target="_blank" style="color:#0077c0;">Peter Parker</a>',
-      start: getDate(24),
+    }, {
+      id: 1002,
+      label: 'Комб: числа Стирлинга',
+      user: '',
+      start: getDate(0),
       duration: 4 * 24 * 60 * 60 * 1000,
       progress: 50,
       type: 'milestone',
@@ -77,29 +74,34 @@
           stroke: '#0EAC51',
         }
       }
-    },
-    {
-      id: 3,
-      label: 'Python',
+    }, {
+      id: 1003,
+      label: 'Py:дз 4. Декораторы',
       user: '',
       start: getDate(0),
       duration: 2 * 24 * 60 * 60 * 1000,
-      progress: 70,
+      progress: 28,
       type: 'task'
-    },
-    {
-      id: 4,
+    }, {
+      id: 1004,
       label: 'БД: дз 4. SQL запросы',
       user: '',
-      start: getDate((24 * 2) - 5),
+      start: getDate(0),
       duration: 2 * 24 * 60 * 60 * 1000,
       progress: 50,
       type: 'task'
       // dependentOn: [3, 2]
+    }, {
+      id: 1005,
+      label: 'Алго: контест!',
+      user: '',
+      start: getDate(0),
+      duration: 3.22 * 24 * 60 * 60 * 1000,
+      progress: 85,
+      type: 'project',
+      // collapsed: true,
     }
   ];
-
-  let showModal = false;
 
   let options = {
     maxRows: 1000,
@@ -141,10 +143,9 @@
           expander: true,
           html: true,
           events: {
-            click({ data, column, event }) {
-                console.log(showModal);
-              // alert('description clicked!\n' + data.label + ' soo ' + column);
-            },
+            click({ data, column }) {
+              alert('description clicked!\n' + data.label + ' soo: ' + showModal);
+            }
           }
         },
         {
@@ -177,24 +178,6 @@
     }
     return 0;
   });
-
-
-  function prepareStyle(userStyle) {
-    let fontSize = '20px';
-    let fontFamily = window
-      .getComputedStyle(document.body)
-      .getPropertyValue('font-family')
-      .toString();
-    if (typeof userStyle !== 'undefined') {
-      if (typeof userStyle.fontSize !== 'undefined') {
-        fontSize = userStyle.fontSize;
-      }
-      if (typeof userStyle.fontFamily !== 'undefined') {
-        fontFamily = userStyle.fontFamily;
-      }
-    }
-    return getStyle(fontSize, fontFamily);
-  }
 
 
   export default {
@@ -231,6 +214,42 @@
         }
       }
     },
+    created() {
+      axios.get('https://deadliner.herokuapp.com/deadlines/list')
+        .then(res => {
+          let new_t = res.data.content.map((t, i) => ({
+              id: i,
+              label: t.name,
+              user: '',
+              description: t.description,
+              start: new Date(t.dateTimeStart).getTime(),
+              duration: new Date(t.dateTimeFinish).getTime() - new Date(t.dateTimeStart).getTime(),
+              progress: 100 * ((new Date(t.dateTimeFinish).getTime() - new Date(t.dateTimeStart).getTime()) / (new Date().getTime() - new Date(t.dateTimeStart).getTime())),
+              type: 'project'
+            })
+          )
+
+          for (let i = 0; i < new_t.length; ++i) {
+            tasks.push(new_t[i])
+          }
+
+          tasks.sort(function (a, b) {
+            if (a.start + a.duration > b.start + b.duration) {
+              return 1;
+            }
+            if (b.start + b.duration > a.start + a.duration) {
+              return -1;
+            }
+            return 0;
+          });
+
+
+        })
+        .catch(e => {
+          console.log("err: ", e)
+        })
+
+    }
 
   }
 
