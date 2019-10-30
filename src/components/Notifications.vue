@@ -16,12 +16,9 @@
                     {{ not.desc }}
                 </b-card-text>
                 <b-col lg="4" class="pb-2 mx-auto">
-                    <b-button variant="outline-dark" size="sm" v-on:click="not.hidden = !not.hidden">
-                        Скрыть
-                    </b-button>
                 </b-col>
-                <b-card-text class="small text-white">
-                    Last updated 3 mins ago
+                <b-card-text class="small">
+                    {{not.updated}}
                 </b-card-text>
             </b-card>
         </b-card-group>
@@ -35,26 +32,18 @@
                 tasksShow: false,
                 nots: [
                     {
-                        title: "Организационные моменты",
-                        desc: 'Отправить паспортные данные для коропоративной стипендии',
-                        style: "danger",
-                        textColor: "white",
-                        hidden: true
-                    },
-                    {
-                        title: "Вопросы жизни и смерти",
-                        desc: 'Попросить перенести дэдлайн по алгоритмам',
-                        hidden: true
-                    },
-                    {
-                        title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                        title: "Расписание",
                         desc:
-                            "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                            'Вам поставили лекцию по креативным технологиям в корпусе на Кронверском 5 ноября в 18:00',
+                        style: "danger",
+                        textColor: "white",
+                        updated: "Добавлено 5 мин назад",
                         hidden: true
                     },
                     {
-                        title: "Организационные моменты",
-                        desc: 'Отправить паспортные данные для коропоративной стипендии',
+                        title: "Неожиданные новости",
+                        desc: 'С новой недели расписание поменяется',
+                        updated: "Добавлено день назад",
                         hidden: true
                     },
                     {
@@ -62,6 +51,21 @@
                         desc: 'Отправить паспортные данные для коропоративной стипендии',
                         style: "danger",
                         textColor: "white",
+                        updated: "Добавлено 40 мин назад",
+                        hidden: true
+                    },
+                    {
+                        title: "Место проведения занятий по С++",
+                        desc: 'Занятие по C++ 4 ноября пройдут в черных досках',
+                        updated: "Добавлено день назад",
+                        hidden: true
+                    },
+                    {
+                        title: "Английский язык: актуальная информация",
+                        desc:
+                            'Некоторые из вас в пятницу столкнулись с проблемой: пары по англискому языку были отменены, но ни нас, ни вас об этом не предупредили.\n' +
+                            'Представители Центра изучения иностранных языков принесли свои извинения. Их рекомендация -- отслеживать все новости в группе Вконтакте: https://vk.com/english_ifmo. Так что перед тем, как идти на пару по английскому языку, заглядывайте в группу, чтоб убедиться, что нет изменений.',
+                        updated: "Добавлено день назад",
                         hidden: true
                     }
                 ]
