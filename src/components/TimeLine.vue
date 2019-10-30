@@ -44,6 +44,7 @@
 
 <script>
   import GanttElastic from "gantt-elastic"
+  import swal from 'sweetalert';
 
   // import GantHeader from "gantt-elastic-header"
   import GantHeader from "../components/Header"
@@ -115,7 +116,15 @@
           html: true,
           events: {
             click({ data, column }) {
-              alert('Задание по предмету: ' + data.label + '\n Вот такое: ' + data.description);
+              // alert('Задание по предмету: ' + data.label + '\n Вот такое: ' + data.description);
+              // swal('Задание по предмету: ' + data.label + '\n Вот такое: ' + data.description);
+
+              swal({
+                title: "Задание по предмету:" + data.label,
+                text: data.description,
+                icon: "warning",
+                dangerMode: true,
+              })
             }
           }
         },

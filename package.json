@@ -20,6 +20,7 @@
     "gantt-elastic": "^1.0.10",
     "gantt-elastic-header": "^0.1.11",
     "serve-static": "^1.14.1",
+    "sweetalert": "^2.1.2",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3"
   },
