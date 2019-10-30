@@ -1,6 +1,12 @@
 # Compiled class file
 *.class
 
+dist/
+.DS_Store
+
+/.idea
+/node_modules
+
 # Log file
 *.log
 
