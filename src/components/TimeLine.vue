@@ -14,7 +14,28 @@
                     <ProgressBar />
                 </div>
             </b-tab>
+            <b-tab title="Сводка">
+                <div class="container">
+                    <p>У вас накопилось {{tasks.length}} дэдлайнов!</p>
+                    <img v-if="tasks.length == 0" class="rounded" src="../assets/DL-0.png" height="250px" width="250px">
+                    <img v-if="tasks.length == 1" class="rounded" src="../assets/DL-1.png" height="250px" width="250px">
+                    <img v-if="tasks.length == 2" class="rounded" src="../assets/DL-2.png" height="250px" width="250px">
+                    <img v-if="tasks.length == 3" class="rounded" src="../assets/DL-3.png" height="250px" width="250px">
+                    <img v-if="tasks.length == 4" class="rounded" src="../assets/DL-4.png" height="250px" width="250px">
+                    <img v-if="tasks.length == 5" class="rounded" src="../assets/DL-5.png" height="250px" width="250px">
+                    <img v-if="tasks.length == 6" class="rounded" src="../assets/DL-6.png" height="250px" width="250px">
+                    <img v-if="tasks.length > 6" class="rounded" src="../assets/DL-7.png" height="250px" width="250px">
+                    <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded mt-5">
+                        <p class="mb-0 mt-2 font-italic">{{ quote.text }}</p>
+                        <footer class="blockquote-footer pt-4 mt-4 border-top">
+                            {{ quote.author }}
+                        </footer>
+                    </blockquote>
+
+                </div>
+            </b-tab>
         </b-tabs>
+
     </div>
 
 </template>
@@ -169,6 +190,25 @@
 
   };
 
+  let quotes = [
+      {
+          author: 'Пауло Коэльо',
+          text: 'Дойдя до конца, люди смеются над страхами, мучившими их вначале...'
+      },
+      {
+          author: 'Оноре де Бальзак',
+          text: 'Чтобы дойти до цели, надо идти...'
+      },
+      {
+          author: 'Александр Чернокоз',
+          text: 'Не забивай, делай алгосы'
+      },
+      {
+          author: 'Джейсон Стетхем',
+          text: 'В любом процессе важна не скорость, а удовольствие'
+      }
+  ];
+
   tasks.sort(function (a, b) {
     if (a.start + a.duration > b.start + b.duration) {
       return 1;
@@ -191,6 +231,8 @@
       return {
         tasks,
         options,
+          quotes,
+          quote: quotes[Math.floor(Math.random()*quotes.length)],
         dynamicStyle: {
           'task-list-header-label': {
             'font-weight': 'bold',
@@ -248,5 +290,23 @@
 </script>
 
 <style scoped>
+    .blockquote-custom {
+        position: relative;
+        font-size: 1.1rem;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 
+    .blockquote-custom-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: -25px;
+        left: 50px;
+    }
 </style>
