@@ -201,7 +201,7 @@
         .then(res => {
           let new_t = res.data.content.map((t, i) => ({
               id: i,
-              label: t.name,
+              label: t.subject.substring(0, 4) + ": " + t.name,
               user: '',
               description: t.description,
               start: getDate(0),
