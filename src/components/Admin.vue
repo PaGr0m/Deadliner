@@ -62,7 +62,7 @@
                     required
             ></b-form-select>
         </b-form-group>
-        <b-button type="submit" class="mr-1" variant="danger">Удалить</b-button>
+        <b-button type="submit" v-on:click="onDelete" variant="danger">Удалить</b-button>
 
 
         <div style="height: 100px; width: 100px;"></div>
@@ -243,13 +243,33 @@
                 this.$nextTick(() => {
                     this.show = true
                 })
-            }
+            },
+          onDelete(evt) {
+              console.log("FORM DELETE: ", this.formDelete.uuidToDelete)
+
+            const tsk = this.tasks.find(el => el.label === this.formDelete.uuidToDelete)
+            console.log("tsk: ", tsk)
+
+
+            const str = decodeURI('https://deadliner.herokuapp.com/deadlines/' + tsk.uuid + '/delete')
+            console.log("str: ", str)
+
+            axios.get(str)
+              .then(res => {
+                this.tasks.slice(this.tasks.indexOf(tsk), 1)
+                console.log("delete succ: ", res)
+                console.log("arr: ", this.tasks)
+                console.log("ar2: ", this.tasks.indexOf(tsk))
+              })
+              .catch(console.log)
+          }
+
         },
       created() {
         axios.get('https://deadliner.herokuapp.com/deadlines/list')
           .then(res => {
             let new_t = res.data.content.map((t, i) => ({
-                uuid: t.uuid,
+                uuid: t.id,
                 id: i,
                 label: t.subject.substring(0, 4) + ": " + t.name,
                 user: '',
