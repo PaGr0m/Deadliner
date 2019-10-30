@@ -192,15 +192,17 @@
                 subject: this.formDl.subject
               }).then(res => {
 
+                const t = res.data
+
                 console.log("deadline created", res)
                 tasks.push({
                   id: Math.round(Math.random() * 10000),
-                  label: res.subject.substring(0, 4) + ": " + t.name,
+                  label: t.subject.substring(0, 4) + ": " + t.name,
                   user: '',
-                  description: res.description,
+                  description: t.description,
                   start: getDate(0),
-                  duration: new Date(res.dateTimeFinish).getTime() - new Date(res.dateTimeStart).getTime(),
-                  progress: 100 * ((new Date(res.dateTimeFinish).getTime() - new Date(res.dateTimeStart).getTime()) / (new Date().getTime() - new Date(res.dateTimeStart).getTime())),
+                  duration: new Date(t.dateTimeFinish).getTime() - new Date(t.dateTimeStart).getTime(),
+                  progress: 10,
                   type: 'project'
                 })
 
