@@ -115,7 +115,7 @@
           html: true,
           events: {
             click({ data, column }) {
-              alert('description clicked!\n' + data.label + ' soo: ');
+              alert('Задание по предмету: ' + data.label + '\n Вот такое: ' + data.description);
             }
           }
         },
