@@ -36,6 +36,8 @@
             </b-tab>
         </b-tabs>
 
+        <div style="height: 100px; width: 100px;"></div>
+
     </div>
 
 </template>
@@ -70,59 +72,7 @@
     }
   };
 
-  let tasks = [
-    {
-      id: 1001,
-      label: 'Алго: дз4',
-      user: '',
-      start: getDate(0),
-      duration: 3 * 24 * 60 * 60 * 1000,
-      progress: 85,
-      type: 'project',
-      // collapsed: true,
-    }, {
-      id: 1002,
-      label: 'Комб: числа Стирлинга',
-      user: '',
-      start: getDate(0),
-      duration: 4 * 24 * 60 * 60 * 1000,
-      progress: 50,
-      type: 'milestone',
-      collapsed: true,
-      style: {
-        base: {
-          fill: '#1EBC61',
-          stroke: '#0EAC51',
-        }
-      }
-    }, {
-      id: 1003,
-      label: 'Py:дз 4. Декораторы',
-      user: '',
-      start: getDate(0),
-      duration: 2 * 24 * 60 * 60 * 1000,
-      progress: 28,
-      type: 'task'
-    }, {
-      id: 1004,
-      label: 'БД: дз 4. SQL запросы',
-      user: '',
-      start: getDate(0),
-      duration: 2 * 24 * 60 * 60 * 1000,
-      progress: 50,
-      type: 'task'
-      // dependentOn: [3, 2]
-    }, {
-      id: 1005,
-      label: 'Алго: контест!',
-      user: '',
-      start: getDate(0),
-      duration: 3.22 * 24 * 60 * 60 * 1000,
-      progress: 85,
-      type: 'project',
-      // collapsed: true,
-    }
-  ];
+  let tasks = [ ];
 
   let options = {
     maxRows: 1000,
@@ -267,15 +217,33 @@
           }
 
           tasks.sort(function (a, b) {
-            if (a.start + a.duration > b.start + b.duration) {
-              return 1;
-            }
-            if (b.start + b.duration > a.start + a.duration) {
-              return -1;
-            }
+            if (a.start + a.duration > b.start + b.duration) return 1;
+            if (b.start + b.duration > a.start + a.duration) return -1;
             return 0;
           });
 
+
+          const len = tasks.length;
+          for (let i = 0; i < len; ++i) {
+            tasks[i].type = "milestone";
+            tasks[i].progress = Math.floor(100 * (new Date().getTime() - getDate(0)) / tasks[i].duration );
+
+            if (i > Math.floor(2 * (len / 3)) ) {
+              tasks[i].style = {
+                base: {
+                  fill: '#1EBC61',
+                  stroke: '#0EAC51',
+                }
+              }
+            } else if (i > Math.floor(len / 3)) {
+              tasks[i].style = {
+                base: {
+                  fill: '#bcb25e',
+                  stroke: '#ac8b52',
+                }
+              }
+            }
+          }
 
         })
         .catch(e => {

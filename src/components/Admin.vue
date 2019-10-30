@@ -248,6 +248,29 @@
             });
 
 
+            const len = tasks.length;
+            for (let i = 0; i < len; ++i) {
+              tasks[i].type = "milestone";
+              tasks[i].progress = Math.floor(100 * (new Date().getTime() - getDate(0)) / tasks[i].duration );
+
+              if (i > Math.floor(2 * (len / 3)) ) {
+                tasks[i].style = {
+                  base: {
+                    fill: '#1EBC61',
+                    stroke: '#0EAC51',
+                  }
+                }
+              } else if (i > Math.floor(len / 3)) {
+                tasks[i].style = {
+                  base: {
+                    fill: '#bcb25e',
+                    stroke: '#ac8b52',
+                  }
+                }
+              }
+            }
+
+
           })
           .catch(e => {
             console.log("err: ", e)
