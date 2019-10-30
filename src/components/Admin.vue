@@ -53,6 +53,22 @@
 
         <div style="height: 100px; width: 100px;"></div>
 
+
+        <b-form-group id="input-group-4" label="Удалить deadline" label-for="input-4">
+            <b-form-select
+                    id="input-4"
+                    v-model="formDelete.uuidToDelete"
+                    :options="this.tasks.map(t => t.label)"
+                    required
+            ></b-form-select>
+        </b-form-group>
+        <b-button type="submit" class="mr-1" variant="danger">Удалить</b-button>
+
+
+        <div style="height: 100px; width: 100px;"></div>
+        <div style="height: 100px; width: 100px;"></div>
+
+
         <!--<b-card class="mt-3" header="Form Data Result">-->
             <!--<pre class="m-0">{{ formDl }}</pre>-->
         <!--</b-card>-->
@@ -168,6 +184,10 @@
                     dateTimeStart: new Date(),
                     dateTimeFinish: null
                 },
+                formDelete: {
+                  uuidToDelete: null
+                },
+
                 formNotification: {
                     title: null,
                     description: null
@@ -195,7 +215,10 @@
                 const t = res.data
 
                 console.log("deadline created", res)
+                console.log("event: ", evt)
+
                 tasks.push({
+                  uuid: res.id,
                   id: Math.round(Math.random() * 10000),
                   label: t.subject.substring(0, 4) + ": " + t.name,
                   user: '',
@@ -226,6 +249,7 @@
         axios.get('https://deadliner.herokuapp.com/deadlines/list')
           .then(res => {
             let new_t = res.data.content.map((t, i) => ({
+                uuid: t.uuid,
                 id: i,
                 label: t.subject.substring(0, 4) + ": " + t.name,
                 user: '',
@@ -236,6 +260,8 @@
                 type: 'project'
               })
             )
+
+            console.log("UUID: ", new_t)
 
             for (let i = 0; i < new_t.length; ++i) {
               tasks.push(new_t[i])
